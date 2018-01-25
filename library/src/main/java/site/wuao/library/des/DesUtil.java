@@ -10,12 +10,11 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 
 /**
- * Des工具
+ * DES工具
  *
  * @author wuao
  * @date 2018/1/25
@@ -42,8 +41,7 @@ public abstract class DesUtil {
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance(KEY_ALGORITHM);
             keyGenerator.init(56);
-            SecretKey secretKey = keyGenerator.generateKey();
-            return secretKey.getEncoded();
+            return keyGenerator.generateKey().getEncoded();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }

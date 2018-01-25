@@ -1,20 +1,18 @@
-package site.wuao.library.desede;
+package site.wuao.library.aes;
 
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.DESedeKeySpec;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
- * DESede工具
+ * AES工具
  *
  * @author wuao
  * @date 2018/1/25
@@ -26,11 +24,11 @@ import javax.crypto.spec.DESedeKeySpec;
  * @github -
  * @note -
  */
-public class DESedeUtil {
+public class AesUtil {
     /** 密钥算法 */
-    public static final String KEY_ALGORITHM = "DESede";
+    public static final String KEY_ALGORITHM = "AES";
     /** 加密解密算法/工作模式/填充方式 */
-    public static final String CIPHER_ALGORITHM = "DESede/ECB/PKCS5Padding";
+    public static final String CIPHER_ALGORITHM = "AES/ECB/PKCS5Padding";
 
     /**
      * 创建密钥
@@ -40,7 +38,7 @@ public class DESedeUtil {
     public static byte[] createKey() {
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance(KEY_ALGORITHM);
-            keyGenerator.init(168);
+            keyGenerator.init(128);
             return keyGenerator.generateKey().getEncoded();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
@@ -107,17 +105,6 @@ public class DESedeUtil {
      * @return 转化结果
      */
     private static Key transformKey(byte[] key) {
-        try {
-            DESedeKeySpec dks = new DESedeKeySpec(key);
-            SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance(KEY_ALGORITHM);
-            return secretKeyFactory.generateSecret(dks);
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (InvalidKeySpecException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return new SecretKeySpec(key, KEY_ALGORITHM);
     }
 }

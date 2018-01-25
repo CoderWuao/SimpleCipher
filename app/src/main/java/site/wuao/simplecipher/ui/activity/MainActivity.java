@@ -8,6 +8,7 @@ import android.view.View;
 
 import java.io.UnsupportedEncodingException;
 
+import site.wuao.library.aes.AesUtil;
 import site.wuao.library.base64.Base64Util;
 import site.wuao.library.cipher.CipherUtil;
 import site.wuao.library.constant.CipherConst;
@@ -128,7 +129,20 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "解密: " + decrypt);
     }
 
-    public void aes(View view) {
+    public void aes(View view) throws UnsupportedEncodingException {
+        String data = "SimpleCipher";
+//        String key = "wuaowuao";
+//        String key = CipherUtil.createDESedeKey(CipherConst.ENCODING_BASE64);
+        String key = new String(AesUtil.createKey());
+
+
+        String encrypt = CipherUtil.encryptAes(data, key, CipherConst.ENCODING_BASE64);
+        String decrypt = CipherUtil.decryptAes(encrypt, key, CipherConst.ENCODING_BASE64);
+
+        Log.i(TAG, "原文: " + data);
+        Log.i(TAG, "密钥: " + key);
+        Log.i(TAG, "加密: " + encrypt);
+        Log.i(TAG, "解密: " + decrypt);
     }
 
     public void rsa(View view) {
