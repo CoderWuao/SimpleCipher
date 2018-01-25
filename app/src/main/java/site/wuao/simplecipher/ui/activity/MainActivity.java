@@ -6,6 +6,12 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 
+import java.io.UnsupportedEncodingException;
+
+import site.wuao.library.base64.Base64Util;
+import site.wuao.library.cipher.CipherUtil;
+import site.wuao.library.constant.CipherConst;
+import site.wuao.library.desede.DESedeUtil;
 import site.wuao.simplecipher.R;
 
 /**
@@ -31,18 +37,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void base64(View view) {
-//        String data = "wuao";
-//        String result = Base64Util.encodeStr2Str(data);
-//        String origin = Base64Util.decodeStr2Str(result);
-//        Log.i(TAG, "原文：" + data);
-//        Log.i(TAG, "编码：" + result);
-//        Log.i(TAG, "解码：" + origin);
-//
-//        // 原文：wuao
-//        // 编码：d3Vhbw==
-//        // 解码：wuao
-
         String data = "wuao";
+
+        String result = Base64Util.encodeStr2Str(data);
+        String origin = Base64Util.decodeStr2Str(result);
+
+        Log.i(TAG, "原文：" + data);
+        Log.i(TAG, "编码：" + result);
+        Log.i(TAG, "解码：" + origin);
+
+        // 原文：wuao
+        // 编码：d3Vhbw==
+        // 解码：wuao
 
         String result01 = new String(Base64.encode(data.getBytes(), Base64.DEFAULT));
         String result02 = new String(Base64.encode(data.getBytes(), Base64.NO_PADDING));
@@ -66,7 +72,60 @@ public class MainActivity extends AppCompatActivity {
         // size:9  NO_CLOSE:   d3Vhbw==
     }
 
-    public void des(View view) {
+    public void des(View view) throws UnsupportedEncodingException {
+//        String str = "wuao";
+//        // key
+//        byte[] bytes = DesUtil.createKey();
+//        String encodeByte2Byte = new String(Base64Util.encodeByte2Byte(bytes));
+//        // 加密
+//        byte[] encrypt = DesUtil.encrypt(str.getBytes(), bytes);
+//        String encode1 = Base64Util.encodeByte2Str(encrypt);
+//        // 解密
+//        byte[] decrypt = DesUtil.decrypt(encrypt, bytes);
+//        String outPut = new String(decrypt);
+//        Log.i(TAG, "des: " + encodeByte2Byte);
+//        Log.i(TAG, "des: " + encode1);
+//        Log.i(TAG, "des: " + outPut);
+
+
+//        String java = Base64Util.encodeByte2Byte("Java加密与解密的艺术");
+//        String s = Base64Util.decryptBase64AsStr(java);
+//        Log.i(TAG, "des: " + java);
+//        Log.i(TAG, "des: " + s);
+
+
+        String data = "SimpleCipher";
+        String key = "wuaowuao";
+
+//        byte[] bytes = DesUtil.createKey();
+//        String key = new String(bytes, CipherConst.CHARACTER_ENCODING_UTF_8);
+
+//        String result = Base64Util.encodeByte2Str(DesUtil.encrypt(data.getBytes(), key.getBytes()));
+//        String origin = new String(DesUtil.decrypt(Base64Util.decodeStr2Byte(result), key.getBytes()));
+
+        String result = CipherUtil.encryptDes(data, key, CipherConst.ENCODING_BASE64);
+        String origin = CipherUtil.decryptDes(result, key, CipherConst.ENCODING_BASE64);
+
+        Log.i(TAG, "原文: " + data);
+        Log.i(TAG, "密钥: " + key);
+        Log.i(TAG, "加密: " + result);
+        Log.i(TAG, "解密: " + origin);
+    }
+
+    public void desede(View view) {
+        String data = "SimpleCipher";
+//        String key = "wuaowuao";
+//        String key = CipherUtil.createDESedeKey(CipherConst.ENCODING_BASE64);
+        String key = new String(DESedeUtil.createKey());
+
+
+        String encrypt = CipherUtil.encryptDESede(data, key, CipherConst.ENCODING_BASE64);
+        String decrypt = CipherUtil.decryptDESede(encrypt, key, CipherConst.ENCODING_BASE64);
+
+        Log.i(TAG, "原文: " + data);
+        Log.i(TAG, "密钥: " + key);
+        Log.i(TAG, "加密: " + encrypt);
+        Log.i(TAG, "解密: " + decrypt);
     }
 
     public void aes(View view) {

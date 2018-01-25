@@ -19,7 +19,8 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
-    compile project(path: ':simplecipher')
+
+//    compile 'com.github.CoderWuao:SimpleCipher:v0.1.0'
+    compile project(path: ':library')
 }

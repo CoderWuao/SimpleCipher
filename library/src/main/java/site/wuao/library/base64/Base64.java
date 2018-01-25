@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package site.wuao.simplecipher.base64;
+package site.wuao.library.base64;
 
 import java.io.UnsupportedEncodingException;
 
@@ -73,7 +73,7 @@ public class Base64 {
         public int op;
 
         /**
-         * Encode/decode another block of input data.  this.output is
+         * Encode/decodeByte2Byte another block of input data.  this.output is
          * provided by the caller, and must be big enough to hold all
          * the coded data.  On exit, this.opwill be set to the length
          * of the coded data.
@@ -106,10 +106,10 @@ public class Base64 {
      * <p>The padding '=' characters at the end are considered optional, but
      * if any are present, there must be the correct number of them.
      *
-     * @param str    the input String to decode, which is converted to
+     * @param str    the input String to decodeByte2Byte, which is converted to
      *               bytes using the default charset
      * @param flags  controls certain features of the decoded output.
-     *               Pass {@code DEFAULT} to decode standard Base64.
+     *               Pass {@code DEFAULT} to decodeByte2Byte standard Base64.
      *
      * @throws IllegalArgumentException if the input contains
      * incorrect padding
@@ -125,9 +125,9 @@ public class Base64 {
      * <p>The padding '=' characters at the end are considered optional, but
      * if any are present, there must be the correct number of them.
      *
-     * @param input the input array to decode
+     * @param input the input array to decodeByte2Byte
      * @param flags  controls certain features of the decoded output.
-     *               Pass {@code DEFAULT} to decode standard Base64.
+     *               Pass {@code DEFAULT} to decodeByte2Byte standard Base64.
      *
      * @throws IllegalArgumentException if the input contains
      * incorrect padding
@@ -143,11 +143,11 @@ public class Base64 {
      * <p>The padding '=' characters at the end are considered optional, but
      * if any are present, there must be the correct number of them.
      *
-     * @param input  the data to decode
+     * @param input  the data to decodeByte2Byte
      * @param offset the position within the input array at which to start
-     * @param len    the number of bytes of input to decode
+     * @param len    the number of bytes of input to decodeByte2Byte
      * @param flags  controls certain features of the decoded output.
-     *               Pass {@code DEFAULT} to decode standard Base64.
+     *               Pass {@code DEFAULT} to decodeByte2Byte standard Base64.
      *
      * @throws IllegalArgumentException if the input contains
      * incorrect padding
@@ -248,7 +248,7 @@ public class Base64 {
 
         /**
          * @return an overestimate for the number of bytes {@code
-         * len} bytes could decode to.
+         * len} bytes could decodeByte2Byte to.
          */
         public int maxOutputSize(int len) {
             return len * 3/4 + 10;
@@ -286,7 +286,7 @@ public class Base64 {
                 //
                 // If any of the next four bytes of input are non-data
                 // (whitespace, etc.), value will end up negative.  (All
-                // the non-data values in decode are small negative
+                // the non-data values in decodeByte2Byte are small negative
                 // numbers, so shifting any of them up and or'ing them
                 // together will result in a value with its top bit set.)
                 //
@@ -443,10 +443,10 @@ public class Base64 {
     //  --------------------------------------------------------
 
     /**
-     * Base64-encode the given data and return a newly allocated
+     * Base64-encodeByte2Byte the given data and return a newly allocated
      * String with the result.
      *
-     * @param input  the data to encode
+     * @param input  the data to encodeByte2Byte
      * @param flags  controls certain features of the encoded output.
      *               Passing {@code DEFAULT} results in output that
      *               adheres to RFC 2045.
@@ -461,13 +461,13 @@ public class Base64 {
     }
 
     /**
-     * Base64-encode the given data and return a newly allocated
+     * Base64-encodeByte2Byte the given data and return a newly allocated
      * String with the result.
      *
-     * @param input  the data to encode
+     * @param input  the data to encodeByte2Byte
      * @param offset the position within the input array at which to
      *               start
-     * @param len    the number of bytes of input to encode
+     * @param len    the number of bytes of input to encodeByte2Byte
      * @param flags  controls certain features of the encoded output.
      *               Passing {@code DEFAULT} results in output that
      *               adheres to RFC 2045.
@@ -482,10 +482,10 @@ public class Base64 {
     }
 
     /**
-     * Base64-encode the given data and return a newly allocated
+     * Base64-encodeByte2Byte the given data and return a newly allocated
      * byte[] with the result.
      *
-     * @param input  the data to encode
+     * @param input  the data to encodeByte2Byte
      * @param flags  controls certain features of the encoded output.
      *               Passing {@code DEFAULT} results in output that
      *               adheres to RFC 2045.
@@ -495,13 +495,13 @@ public class Base64 {
     }
 
     /**
-     * Base64-encode the given data and return a newly allocated
+     * Base64-encodeByte2Byte the given data and return a newly allocated
      * byte[] with the result.
      *
-     * @param input  the data to encode
+     * @param input  the data to encodeByte2Byte
      * @param offset the position within the input array at which to
      *               start
-     * @param len    the number of bytes of input to encode
+     * @param len    the number of bytes of input to encodeByte2Byte
      * @param flags  controls certain features of the encoded output.
      *               Passing {@code DEFAULT} results in output that
      *               adheres to RFC 2045.
@@ -594,7 +594,7 @@ public class Base64 {
 
         /**
          * @return an overestimate for the number of bytes {@code
-         * len} bytes could encode to.
+         * len} bytes could encodeByte2Byte to.
          */
         public int maxOutputSize(int len) {
             return len * 8/5 + 10;

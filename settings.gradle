@@ -1,1 +1,1 @@
-include ':app', ':simplecipher'
+include ':app', ':library'
