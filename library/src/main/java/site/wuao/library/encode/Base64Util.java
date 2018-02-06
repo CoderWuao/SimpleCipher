@@ -1,9 +1,11 @@
-package site.wuao.library.base64;
+package site.wuao.library.encode;
+
 
 
 import java.io.UnsupportedEncodingException;
 
-import site.wuao.library.constant.CipherConst;
+import site.wuao.opsrc.android.util.Base64;
+import site.wuao.opsrc.apache.commons.codec.CharEncoding;
 
 
 /**
@@ -26,7 +28,7 @@ public abstract class Base64Util {
      * @param data 数据
      * @return 编码结果
      */
-    public static byte[] encodeByte2Byte(byte[] data) {
+    public static byte[] encode(byte[] data) {
         return Base64.encode(data, Base64.NO_WRAP);
     }
 
@@ -36,11 +38,11 @@ public abstract class Base64Util {
      * @param data 数据
      * @return 编码结果
      */
-    public static String encodeByte2Str(byte[] data) {
+    public static byte[] encode(String data) {
         try {
-            return new String(encodeByte2Byte(data), CipherConst.CHARACTER_ENCODING_UTF_8);
+            return encode(data.getBytes(CharEncoding.UTF_8));
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            // 不做处理
         }
         return null;
     }
@@ -51,11 +53,12 @@ public abstract class Base64Util {
      * @param data 数据
      * @return 编码结果
      */
-    public static byte[] encodeStr2Byte(String data) {
+    public static String encodeString(byte[] data) {
         try {
-            return encodeByte2Byte(data.getBytes(CipherConst.CHARACTER_ENCODING_UTF_8));
+            byte[] encode = encode(data);
+            return new String(encode, CharEncoding.UTF_8);
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            // 不做处理
         }
         return null;
     }
@@ -66,11 +69,12 @@ public abstract class Base64Util {
      * @param data 数据
      * @return 编码结果
      */
-    public static String encodeStr2Str(String data) {
+    public static String encodeString(String data) {
         try {
-            return encodeByte2Str(data.getBytes(CipherConst.CHARACTER_ENCODING_UTF_8));
+            byte[] encode = encode(data.getBytes(CharEncoding.UTF_8));
+            return new String(encode, CharEncoding.UTF_8);
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            // 不做处理
         }
         return null;
     }
@@ -81,7 +85,7 @@ public abstract class Base64Util {
      * @param data 数据
      * @return 解码结果
      */
-    public static byte[] decodeByte2Byte(byte[] data) {
+    public static byte[] decode(byte[] data) {
         return Base64.decode(data, Base64.NO_WRAP);
     }
 
@@ -91,11 +95,11 @@ public abstract class Base64Util {
      * @param data 数据
      * @return 编码结果
      */
-    public static String decodeByte2Str(byte[] data) {
+    public static byte[] decode(String data) {
         try {
-            return new String(decodeByte2Byte(data), CipherConst.CHARACTER_ENCODING_UTF_8);
+            return decode(data.getBytes(CharEncoding.UTF_8));
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            // 不做处理
         }
         return null;
     }
@@ -106,11 +110,12 @@ public abstract class Base64Util {
      * @param data 数据
      * @return 编码结果
      */
-    public static byte[] decodeStr2Byte(String data) {
+    public static String decodeString(byte[] data) {
         try {
-            return decodeByte2Byte(data.getBytes(CipherConst.CHARACTER_ENCODING_UTF_8));
+            byte[] decode = decode(data);
+            return new String(decode, CharEncoding.UTF_8);
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            // 不做处理
         }
         return null;
     }
@@ -121,11 +126,12 @@ public abstract class Base64Util {
      * @param data 数据
      * @return 编码结果
      */
-    public static String decodeStr2Str(String data) {
+    public static String decodeString(String data) {
         try {
-            return decodeByte2Str(data.getBytes(CipherConst.CHARACTER_ENCODING_UTF_8));
+            byte[] decode = decode(data.getBytes(CharEncoding.UTF_8));
+            return new String(decode, CharEncoding.UTF_8);
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            // 不做处理
         }
         return null;
     }

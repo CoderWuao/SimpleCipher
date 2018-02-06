@@ -1,4 +1,4 @@
-package site.wuao.library.aes;
+package site.wuao.library.utils;
 
 import java.security.InvalidKeyException;
 import java.security.Key;
@@ -26,9 +26,9 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class AesUtil {
     /** 密钥算法 */
-    public static final String KEY_ALGORITHM = "AES";
+    private static final String KEY_ALGORITHM = "AES";
     /** 加密解密算法/工作模式/填充方式 */
-    public static final String CIPHER_ALGORITHM = "AES/ECB/PKCS5Padding";
+    private static final String CIPHER_ALGORITHM = "AES/ECB/PKCS5Padding";
 
     /**
      * 创建密钥
@@ -37,6 +37,7 @@ public class AesUtil {
      */
     public static byte[] createKey() {
         try {
+            // TODO: 2018/1/26 有问题
             KeyGenerator keyGenerator = KeyGenerator.getInstance(KEY_ALGORITHM);
             keyGenerator.init(128);
             return keyGenerator.generateKey().getEncoded();

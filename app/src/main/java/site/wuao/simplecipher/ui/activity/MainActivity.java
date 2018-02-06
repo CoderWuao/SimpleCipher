@@ -8,11 +8,15 @@ import android.view.View;
 
 import java.io.UnsupportedEncodingException;
 
-import site.wuao.library.aes.AesUtil;
-import site.wuao.library.base64.Base64Util;
-import site.wuao.library.cipher.CipherUtil;
-import site.wuao.library.constant.CipherConst;
-import site.wuao.library.desede.DESedeUtil;
+import site.wuao.library.encryption.asymmetry.RSAKey;
+import site.wuao.library.encryption.symmetry.AES;
+import site.wuao.library.encryption.symmetry.DES;
+import site.wuao.library.encryption.symmetry.DESede;
+import site.wuao.library.encryption.asymmetry.RSA;
+import site.wuao.library.digest.MD5Util;
+import site.wuao.library.digest.SHA1Util;
+import site.wuao.library.encode.Base64Util;
+import site.wuao.library.encode.HexUtil;
 import site.wuao.simplecipher.R;
 
 /**
@@ -37,15 +41,46 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void md5(View view) {
+        String data = "MD5消息摘要";
+
+        String digest = MD5Util.digestHex(data);
+
+        Log.i(TAG, "原文: " + data);
+        Log.i(TAG, "摘要: " + digest);
+
+        // aa24863099cf24696d4eb0f82c918849
+    }
+
+    public void sha1(View view) {
+        String data = "MD5消息摘要";
+
+        String digest = SHA1Util.digestHex(data);
+
+        Log.i(TAG, "原文: " + data);
+        Log.i(TAG, "摘要: " + digest);
+    }
+
+    public void hex(View view) {
+        String data = "wuao";
+
+        String encode = HexUtil.encodeString(data);
+        String decode = HexUtil.decodeString(encode);
+
+        Log.i(TAG, "原文: " + data);
+        Log.i(TAG, "编码: " + encode);
+        Log.i(TAG, "解码: " + decode);
+    }
+
     public void base64(View view) {
         String data = "wuao";
 
-        String result = Base64Util.encodeStr2Str(data);
-        String origin = Base64Util.decodeStr2Str(result);
+        String encode = Base64Util.encodeString(data);
+        String decode = Base64Util.decodeString(encode);
 
         Log.i(TAG, "原文：" + data);
-        Log.i(TAG, "编码：" + result);
-        Log.i(TAG, "解码：" + origin);
+        Log.i(TAG, "编码：" + encode);
+        Log.i(TAG, "解码：" + decode);
 
         // 原文：wuao
         // 编码：d3Vhbw==
@@ -74,77 +109,217 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void des(View view) throws UnsupportedEncodingException {
-//        String str = "wuao";
-//        // key
-//        byte[] bytes = DesUtil.createKey();
-//        String encodeByte2Byte = new String(Base64Util.encodeByte2Byte(bytes));
-//        // 加密
-//        byte[] encrypt = DesUtil.encrypt(str.getBytes(), bytes);
-//        String encode1 = Base64Util.encodeByte2Str(encrypt);
-//        // 解密
-//        byte[] decrypt = DesUtil.decrypt(encrypt, bytes);
-//        String outPut = new String(decrypt);
-//        Log.i(TAG, "des: " + encodeByte2Byte);
-//        Log.i(TAG, "des: " + encode1);
-//        Log.i(TAG, "des: " + outPut);
+        desBase64();
+        desHex();
+        desCustomKey();
+    }
 
+    private void desBase64() {
+        DES instance = DES.getInstance();
+        instance.init(DES.KEY_SIZE_56, DES.WORK_MODE_ECB, DES.PADDING_MODE_PKCS5Padding);
 
-//        String java = Base64Util.encodeByte2Byte("Java加密与解密的艺术");
-//        String s = Base64Util.decryptBase64AsStr(java);
-//        Log.i(TAG, "des: " + java);
-//        Log.i(TAG, "des: " + s);
+        String data = "wuao";
+        String keyBase64 = instance.createKeyBase64();
 
-
-        String data = "SimpleCipher";
-        String key = "wuaowuao";
-
-//        byte[] bytes = DesUtil.createKey();
-//        String key = new String(bytes, CipherConst.CHARACTER_ENCODING_UTF_8);
-
-//        String result = Base64Util.encodeByte2Str(DesUtil.encrypt(data.getBytes(), key.getBytes()));
-//        String origin = new String(DesUtil.decrypt(Base64Util.decodeStr2Byte(result), key.getBytes()));
-
-        String result = CipherUtil.encryptDes(data, key, CipherConst.ENCODING_BASE64);
-        String origin = CipherUtil.decryptDes(result, key, CipherConst.ENCODING_BASE64);
+        String encrypt = instance.encryptBase64(data, keyBase64);
+        String decrypt = instance.decryptBase64(encrypt, keyBase64);
 
         Log.i(TAG, "原文: " + data);
-        Log.i(TAG, "密钥: " + key);
-        Log.i(TAG, "加密: " + result);
-        Log.i(TAG, "解密: " + origin);
+        Log.i(TAG, "密钥: " + keyBase64);
+        Log.i(TAG, "加密: " + encrypt);
+        Log.i(TAG, "解密: " + decrypt);
+    }
+
+    private void desHex() {
+        DES instance = DES.getInstance();
+        instance.init(DES.KEY_SIZE_56, DES.WORK_MODE_ECB, DES.PADDING_MODE_PKCS5Padding);
+
+        String data = "wuao";
+        String keyHex = instance.createKeyHex();
+
+        String encrypt = instance.encryptHex(data, keyHex);
+        String decrypt = instance.decryptHex(encrypt, keyHex);
+
+        Log.i(TAG, "原文: " + data);
+        Log.i(TAG, "密钥: " + keyHex);
+        Log.i(TAG, "加密: " + encrypt);
+        Log.i(TAG, "解密: " + decrypt);
+    }
+
+    private void desCustomKey() {
+        DES instance = DES.getInstance();
+        instance.init(DES.KEY_SIZE_56, DES.WORK_MODE_ECB, DES.PADDING_MODE_PKCS5Padding);
+
+        String data = "SimpleSipher";
+        String key = "wuaowuao";
+
+        String keyBase64 = Base64Util.encodeString(key);
+
+        String encrypt = instance.encryptBase64(data, keyBase64);
+        String decrypt = instance.decryptBase64(encrypt, keyBase64);
+
+        Log.i(TAG, "原文: " + data);
+        Log.i(TAG, "密钥: " + keyBase64);
+        Log.i(TAG, "加密: " + encrypt);
+        Log.i(TAG, "解密: " + decrypt);
     }
 
     public void desede(View view) {
-        String data = "SimpleCipher";
-//        String key = "wuaowuao";
-//        String key = CipherUtil.createDESedeKey(CipherConst.ENCODING_BASE64);
-        String key = new String(DESedeUtil.createKey());
+        desedeBase64();
+        desedeHex();
+        desedeCustomKey();
+    }
 
+    private void desedeBase64() {
+        DESede instance = DESede.getInstance();
+        instance.init(DESede.KEY_SIZE_168, DESede.WORK_MODE_ECB, DESede.PADDING_MODE_PKCS5Padding);
 
-        String encrypt = CipherUtil.encryptDESede(data, key, CipherConst.ENCODING_BASE64);
-        String decrypt = CipherUtil.decryptDESede(encrypt, key, CipherConst.ENCODING_BASE64);
+        String data = "wuao";
+        String keyBase64 = instance.createKeyBase64();
+
+        String encrypt = instance.encryptBase64(data, keyBase64);
+        String decrypt = instance.decryptBase64(encrypt, keyBase64);
 
         Log.i(TAG, "原文: " + data);
-        Log.i(TAG, "密钥: " + key);
+        Log.i(TAG, "密钥: " + keyBase64);
+        Log.i(TAG, "加密: " + encrypt);
+        Log.i(TAG, "解密: " + decrypt);
+    }
+
+    private void desedeHex() {
+        DESede instance = DESede.getInstance();
+        instance.init(DESede.KEY_SIZE_168, DESede.WORK_MODE_ECB, DESede.PADDING_MODE_PKCS5Padding);
+
+        String data = "wuao";
+        String keyHex = instance.createKeyHex();
+
+        String encrypt = instance.encryptHex(data, keyHex);
+        String decrypt = instance.decryptHex(encrypt, keyHex);
+
+        Log.i(TAG, "原文: " + data);
+        Log.i(TAG, "密钥: " + keyHex);
+        Log.i(TAG, "加密: " + encrypt);
+        Log.i(TAG, "解密: " + decrypt);
+    }
+
+    private void desedeCustomKey() {
+        DESede instance = DESede.getInstance();
+        instance.init(DESede.KEY_SIZE_168, DESede.WORK_MODE_ECB, DESede.PADDING_MODE_PKCS5Padding);
+
+        String data = "SimpleCipher";
+        String key = "wuaowuao";
+        String keyBase64 = Base64Util.encodeString(key);
+
+        String encrypt = instance.encryptBase64(data, keyBase64);
+        String decrypt = instance.decryptBase64(encrypt, keyBase64);
+
+        Log.i(TAG, "原文: " + data);
+        Log.i(TAG, "密钥: " + keyBase64);
         Log.i(TAG, "加密: " + encrypt);
         Log.i(TAG, "解密: " + decrypt);
     }
 
     public void aes(View view) throws UnsupportedEncodingException {
-        String data = "SimpleCipher";
-//        String key = "wuaowuao";
-//        String key = CipherUtil.createDESedeKey(CipherConst.ENCODING_BASE64);
-        String key = new String(AesUtil.createKey());
+        aesBase64();
+        aesHex();
+        aesCustomKey();
+    }
 
+    private void aesBase64() {
+        AES instance = AES.getInstance();
+        instance.init(AES.KEY_SIZE_128, AES.WORK_MODE_ECB, AES.PADDING_MODE_PKCS5Padding);
 
-        String encrypt = CipherUtil.encryptAes(data, key, CipherConst.ENCODING_BASE64);
-        String decrypt = CipherUtil.decryptAes(encrypt, key, CipherConst.ENCODING_BASE64);
+        String data = "wuao";
+        String keyBase64 = instance.createKeyBase64();
+
+        String encrypt = instance.encryptBase64(data, keyBase64);
+        String decrypt = instance.decryptBase64(encrypt, keyBase64);
 
         Log.i(TAG, "原文: " + data);
-        Log.i(TAG, "密钥: " + key);
+        Log.i(TAG, "密钥: " + keyBase64);
+        Log.i(TAG, "加密: " + encrypt);
+        Log.i(TAG, "解密: " + decrypt);
+    }
+
+    private void aesHex() {
+        AES instance = AES.getInstance();
+        instance.init(AES.KEY_SIZE_128, AES.WORK_MODE_ECB, AES.PADDING_MODE_PKCS5Padding);
+
+        String data = "wuao";
+        String keyHex = instance.createKeyHex();
+
+        String encrypt = instance.encryptHex(data, keyHex);
+        String decrypt = instance.decryptHex(encrypt, keyHex);
+
+        Log.i(TAG, "原文: " + data);
+        Log.i(TAG, "密钥: " + keyHex);
+        Log.i(TAG, "加密: " + encrypt);
+        Log.i(TAG, "解密: " + decrypt);
+    }
+
+    private void aesCustomKey() {
+        AES instance = AES.getInstance();
+        instance.init(AES.KEY_SIZE_128, AES.WORK_MODE_ECB, AES.PADDING_MODE_PKCS5Padding);
+
+        String data = "SimpleCipher";
+        String key = "wuaowuaowuaowuao";
+        String keyBase64 = Base64Util.encodeString(key);
+
+        String encrypt = instance.encryptBase64(data, keyBase64);
+        String decrypt = instance.decryptBase64(encrypt, keyBase64);
+
+        Log.i(TAG, "原文: " + data);
+        Log.i(TAG, "密钥: " + keyBase64);
         Log.i(TAG, "加密: " + encrypt);
         Log.i(TAG, "解密: " + decrypt);
     }
 
     public void rsa(View view) {
+        rsaBase64();
+        rsaHex();
+    }
+
+    private void rsaBase64() {
+        RSA instance = RSA.getInstance();
+        instance.init(RSA.KEY_SIZE_512, RSA.WORK_MODE_ECB, RSA.PADDING_MODE_PKCS1Padding);
+
+        String data = "wuao";
+        RSAKey key = instance.createKey();
+
+        String encryptByPublicKey = instance.encryptByPublicKeyBase64(data, key.publicKeyBase64);
+        String decryptByPrivateKey = instance.decryptByPrivateKeyBase64(encryptByPublicKey, key.privateKeyBase64);
+
+        String encryptByPrivateKey = instance.encryptByPrivateKeyBase64(data, key.privateKeyBase64);
+        String decryptByPublicKey = instance.decryptByPublicKeyBase64(encryptByPrivateKey, key.publicKeyBase64);
+
+        Log.i(TAG, "原文: " + data);
+        Log.i(TAG, "公钥: " + key.publicKeyBase64);
+        Log.i(TAG, "私钥: " + key.privateKeyBase64);
+        Log.i(TAG, "公钥加密: " + encryptByPublicKey);
+        Log.i(TAG, "私钥解密: " + decryptByPrivateKey);
+        Log.i(TAG, "私钥加密: " + encryptByPrivateKey);
+        Log.i(TAG, "公钥解密: " + decryptByPublicKey);
+    }
+
+    private void rsaHex() {
+        RSA instance = RSA.getInstance();
+        instance.init(RSA.KEY_SIZE_512, RSA.WORK_MODE_ECB, RSA.PADDING_MODE_PKCS1Padding);
+
+        String data = "wuao";
+        RSAKey key = instance.createKey();
+
+        String encryptByPublicKey = instance.encryptByPublicKeyHex(data, key.publicKeyHex);
+        String decryptByPrivateKey = instance.decryptByPrivateKeyHex(encryptByPublicKey, key.privateKeyHex);
+
+        String encryptByPrivateKey = instance.encryptByPrivateKeyHex(data, key.privateKeyHex);
+        String decryptByPublicKey = instance.decryptByPublicKeyHex(encryptByPrivateKey, key.publicKeyHex);
+
+        Log.i(TAG, "原文: " + data);
+        Log.i(TAG, "公钥: " + key.publicKeyHex);
+        Log.i(TAG, "私钥: " + key.privateKeyHex);
+        Log.i(TAG, "公钥加密: " + encryptByPublicKey);
+        Log.i(TAG, "私钥解密: " + decryptByPrivateKey);
+        Log.i(TAG, "私钥加密: " + encryptByPrivateKey);
+        Log.i(TAG, "公钥解密: " + decryptByPublicKey);
     }
 }

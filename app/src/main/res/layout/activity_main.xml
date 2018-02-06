@@ -10,6 +10,24 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="md5"
+        android:text="md5"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="sha1"
+        android:text="sha1"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="hex"
+        android:text="hex"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:onClick="base64"
         android:text="base64"/>
 
@@ -37,5 +55,11 @@
         android:layout_height="wrap_content"
         android:onClick="rsa"
         android:text="rsa"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="dh"
+        android:text="dh"/>
 
 </LinearLayout>

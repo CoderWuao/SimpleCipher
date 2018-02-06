@@ -1,4 +1,4 @@
-package site.wuao.library.des;
+package site.wuao.library.utils;
 
 import java.security.InvalidKeyException;
 import java.security.Key;
@@ -11,10 +11,10 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.DESKeySpec;
+import javax.crypto.spec.DESedeKeySpec;
 
 /**
- * DES工具
+ * DESede工具
  *
  * @author wuao
  * @date 2018/1/25
@@ -26,11 +26,11 @@ import javax.crypto.spec.DESKeySpec;
  * @github -
  * @note -
  */
-public abstract class DesUtil {
+public class DESedeUtil {
     /** 密钥算法 */
-    public static final String KEY_ALGORITHM = "DES";
+    private static final String KEY_ALGORITHM = "DESede";
     /** 加密解密算法/工作模式/填充方式 */
-    public static final String CIPHER_ALGORITHM = "DES/ECB/PKCS5Padding";
+    private static final String CIPHER_ALGORITHM = "DESede/ECB/PKCS5Padding";
 
     /**
      * 创建密钥
@@ -40,7 +40,7 @@ public abstract class DesUtil {
     public static byte[] createKey() {
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance(KEY_ALGORITHM);
-            keyGenerator.init(56);
+            keyGenerator.init(168);
             return keyGenerator.generateKey().getEncoded();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
@@ -108,9 +108,9 @@ public abstract class DesUtil {
      */
     private static Key transformKey(byte[] key) {
         try {
-            DESKeySpec desKeySpec = new DESKeySpec(key);
+            DESedeKeySpec dks = new DESedeKeySpec(key);
             SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance(KEY_ALGORITHM);
-            return secretKeyFactory.generateSecret(desKeySpec);
+            return secretKeyFactory.generateSecret(dks);
         } catch (InvalidKeyException e) {
             e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {

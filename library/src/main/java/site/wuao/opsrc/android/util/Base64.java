@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package site.wuao.library.base64;
+package site.wuao.opsrc.android.util;
 
 import java.io.UnsupportedEncodingException;
 
@@ -739,4 +739,3 @@ public class Base64 {
 
     private Base64() { }   // don't instantiate
 }
-
