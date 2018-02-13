@@ -19,9 +19,7 @@ import site.wuao.opsrc.apache.commons.codec.CharEncoding;
  * @note -
  */
 public abstract class HexUtil {
-    /**
-     * Used to build output as Hex
-     */
+    /** 十六进制输出字符 */
     private static final char[] DIGITS_LOWER = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     /**
@@ -82,14 +80,6 @@ public abstract class HexUtil {
         return null;
     }
 
-    private static int toDigit(final char ch, final int index) {
-        final int digit = Character.digit(ch, 16);
-        if (digit == -1) {
-            throw new RuntimeException("Illegal hexadecimal character " + ch + " at index " + index);
-        }
-        return digit;
-    }
-
     /**
      * 解码
      *
@@ -115,7 +105,6 @@ public abstract class HexUtil {
 
         return out;
     }
-
 
     /**
      * 解码
@@ -157,5 +146,20 @@ public abstract class HexUtil {
             // 不做处理
         }
         return null;
+    }
+
+    /**
+     * 转字符
+     *
+     * @param ch char
+     * @param index 索引
+     * @return 字符
+     */
+    private static int toDigit(final char ch, final int index) {
+        final int digit = Character.digit(ch, 16);
+        if (digit == -1) {
+            throw new RuntimeException("Illegal hexadecimal character " + ch + " at index " + index);
+        }
+        return digit;
     }
 }

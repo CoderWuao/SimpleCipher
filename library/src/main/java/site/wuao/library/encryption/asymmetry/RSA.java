@@ -71,14 +71,6 @@ public class RSA extends AsymmetricEncryption {
     }
 
     /**
-     * 单例持有者
-     */
-    private static class RSAHolder {
-        /** 单例对象 */
-        private static final RSA sInstance = new RSA();
-    }
-
-    /**
      * 创建密钥
      *
      * @return 密钥
@@ -86,7 +78,7 @@ public class RSA extends AsymmetricEncryption {
     public RSAKey createKey() {
         Exception exception;
         try {
-            KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(mKeyAlgorithm);
+            KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(getKeyAlgorithm());
             keyPairGenerator.initialize(getKeySize());
             KeyPair keyPair = keyPairGenerator.generateKeyPair();
             byte[] privateKey = keyPair.getPrivate().getEncoded();
@@ -119,7 +111,7 @@ public class RSA extends AsymmetricEncryption {
         Exception exception;
         try {
             X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(key);
-            KeyFactory keyFactory = KeyFactory.getInstance(mKeyAlgorithm);
+            KeyFactory keyFactory = KeyFactory.getInstance(getKeyAlgorithm());
             PublicKey publicKey = keyFactory.generatePublic(x509EncodedKeySpec);
             Cipher cipher = Cipher.getInstance(getCipherAlgorithm());
             cipher.init(Cipher.ENCRYPT_MODE, publicKey);
@@ -178,7 +170,7 @@ public class RSA extends AsymmetricEncryption {
         Exception exception;
         try {
             PKCS8EncodedKeySpec pkcs8EncodedKeySpec = new PKCS8EncodedKeySpec(key);
-            KeyFactory keyFactory = KeyFactory.getInstance(mKeyAlgorithm);
+            KeyFactory keyFactory = KeyFactory.getInstance(getKeyAlgorithm());
             PrivateKey privateKey = keyFactory.generatePrivate(pkcs8EncodedKeySpec);
             Cipher cipher = Cipher.getInstance(getCipherAlgorithm());
             cipher.init(Cipher.ENCRYPT_MODE, privateKey);
@@ -238,7 +230,7 @@ public class RSA extends AsymmetricEncryption {
         try {
             // 获取公钥
             X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(key);
-            KeyFactory keyFactory = KeyFactory.getInstance(mKeyAlgorithm);
+            KeyFactory keyFactory = KeyFactory.getInstance(getKeyAlgorithm());
             PublicKey publicKey = keyFactory.generatePublic(x509EncodedKeySpec);
             // 解密
             Cipher cipher = Cipher.getInstance(getCipherAlgorithm());
@@ -298,7 +290,7 @@ public class RSA extends AsymmetricEncryption {
         Exception exception;
         try {
             PKCS8EncodedKeySpec pkcs8EncodedKeySpec = new PKCS8EncodedKeySpec(key);
-            KeyFactory keyFactory = KeyFactory.getInstance(mKeyAlgorithm);
+            KeyFactory keyFactory = KeyFactory.getInstance(getKeyAlgorithm());
             PrivateKey privateKey = keyFactory.generatePrivate(pkcs8EncodedKeySpec);
             Cipher cipher = Cipher.getInstance(getCipherAlgorithm());
             cipher.init(Cipher.DECRYPT_MODE, privateKey);
@@ -344,5 +336,13 @@ public class RSA extends AsymmetricEncryption {
             // 不做处理
         }
         return null;
+    }
+
+    /**
+     * 单例持有者
+     */
+    private static class RSAHolder {
+        /** 单例对象 */
+        private static final RSA sInstance = new RSA();
     }
 }

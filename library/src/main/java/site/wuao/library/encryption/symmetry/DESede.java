@@ -63,14 +63,6 @@ public class DESede extends SymmetricEncryption {
         return DESedeHolder.sInstance;
     }
 
-    /**
-     * 单例持有者
-     */
-    private static class DESedeHolder {
-        /** 单例对象 */
-        private static final DESede sInstance = new DESede();
-    }
-
     @Override
     protected Key transformKey(byte[] key) {
         Exception exception;
@@ -85,5 +77,13 @@ public class DESede extends SymmetricEncryption {
             throw new RuntimeException(exception.getMessage());
         }
         return null;
+    }
+
+    /**
+     * 单例持有者
+     */
+    private static class DESedeHolder {
+        /** 单例对象 */
+        private static final DESede sInstance = new DESede();
     }
 }

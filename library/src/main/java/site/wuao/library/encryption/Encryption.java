@@ -1,7 +1,5 @@
 package site.wuao.library.encryption;
 
-import android.text.TextUtils;
-
 import java.security.InvalidParameterException;
 
 /**
@@ -19,8 +17,7 @@ import java.security.InvalidParameterException;
  */
 public class Encryption {
     /** 密钥算法 */
-    protected String mKeyAlgorithm;
-
+    private String mKeyAlgorithm;
     /** 密钥长度 */
     private int mKeySize;
     /** 加密解密算法/工作模式/填充方式 */
@@ -33,6 +30,40 @@ public class Encryption {
      */
     protected Encryption(String keyAlgorithm) {
         mKeyAlgorithm = keyAlgorithm;
+    }
+
+    /**
+     * 初始化
+     *
+     * @param keySize 密钥长度
+     * @param workMode 工作模式
+     * @param paddingMode 填充方式
+     */
+    public void init(int keySize, String workMode, String paddingMode) {
+        if (keySize <= 0) {
+            throw new InvalidParameterException("invalid keySize: " + keySize + " bits");
+        }
+        if (workMode == null || "".equals(workMode)) {
+            throw new InvalidParameterException("invalid workMode: " + workMode);
+        }
+        if (paddingMode == null || "".equals(paddingMode)) {
+            throw new InvalidParameterException("invalid paddingMode: " + paddingMode);
+        }
+
+        mKeySize = keySize;
+        mCipherAlgorithm = mKeyAlgorithm + "/" + workMode + "/" + paddingMode;
+    }
+
+    /**
+     * 获取密钥算法
+     *
+     * @return 密钥算法
+     */
+    protected String getKeyAlgorithm() {
+        if (mKeyAlgorithm == null) {
+            throw new RuntimeException("You do not define the key algorithm");
+        }
+        return mKeyAlgorithm;
     }
 
     /**
@@ -57,27 +88,5 @@ public class Encryption {
             throw new RuntimeException("please call the method \"init\" first");
         }
         return mCipherAlgorithm;
-    }
-
-    /**
-     * 初始化
-     *
-     * @param keySize 密钥长度
-     * @param workMode 工作模式
-     * @param paddingMode 填充方式
-     */
-    public void init(int keySize, String workMode, String paddingMode) {
-        if (keySize <= 0) {
-            throw new InvalidParameterException("invalid keySize: " + keySize + " bits");
-        }
-        if (TextUtils.isEmpty(workMode)) {
-            throw new InvalidParameterException("invalid workMode: " + workMode);
-        }
-        if (TextUtils.isEmpty(paddingMode)) {
-            throw new InvalidParameterException("invalid paddingMode: " + paddingMode);
-        }
-
-        mKeySize = keySize;
-        mCipherAlgorithm = mKeyAlgorithm + "/" + workMode + "/" + paddingMode;
     }
 }

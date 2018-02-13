@@ -64,16 +64,16 @@ public class AES extends SymmetricEncryption {
         return AESHolder.sInstance;
     }
 
+    @Override
+    protected Key transformKey(byte[] key) {
+        return new SecretKeySpec(key, KEY_ALGORITHM);
+    }
+
     /**
      * 单例持有者
      */
     private static class AESHolder {
         /** 单例对象 */
         private static final AES sInstance = new AES();
-    }
-
-    @Override
-    protected Key transformKey(byte[] key) {
-        return new SecretKeySpec(key, KEY_ALGORITHM);
     }
 }

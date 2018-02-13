@@ -42,7 +42,7 @@ public abstract class SymmetricEncryption extends Encryption {
      */
     public byte[] createKey() {
         try {
-            KeyGenerator keyGenerator = KeyGenerator.getInstance(mKeyAlgorithm);
+            KeyGenerator keyGenerator = KeyGenerator.getInstance(getKeyAlgorithm());
             keyGenerator.init(getKeySize());
             return keyGenerator.generateKey().getEncoded();
         } catch (NoSuchAlgorithmException e) {

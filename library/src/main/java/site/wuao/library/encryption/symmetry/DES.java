@@ -62,20 +62,12 @@ public class DES extends SymmetricEncryption {
         return DESHolder.sInstance;
     }
 
-    /**
-     * 单例持有者
-     */
-    private static class DESHolder {
-        /** 单例对象 */
-        private static final DES sInstance = new DES();
-    }
-
     @Override
     protected Key transformKey(byte[] key) {
         Exception exception;
         try {
             DESKeySpec desKeySpec = new DESKeySpec(key);
-            SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance(mKeyAlgorithm);
+            SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance(getKeyAlgorithm());
             return secretKeyFactory.generateSecret(desKeySpec);
         } catch (Exception e) {
             exception = e;
@@ -84,5 +76,13 @@ public class DES extends SymmetricEncryption {
             throw new RuntimeException(exception.getMessage());
         }
         return null;
+    }
+
+    /**
+     * 单例持有者
+     */
+    private static class DESHolder {
+        /** 单例对象 */
+        private static final DES sInstance = new DES();
     }
 }
