@@ -22,8 +22,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
 
-//    compile 'com.github.CoderWuao:SimpleCipher:v0.1.0'
-    compile project(path: ':library')
+    compile 'com.github.CoderWuao:SimpleCipher:v0.2.0'
+//    compile project(path: ':library')
 
 
 
