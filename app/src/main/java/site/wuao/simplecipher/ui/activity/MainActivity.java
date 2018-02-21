@@ -1,22 +1,22 @@
 package site.wuao.simplecipher.ui.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 
 import java.io.UnsupportedEncodingException;
 
-import site.wuao.library.encryption.asymmetry.RSAKey;
-import site.wuao.library.encryption.symmetry.AES;
-import site.wuao.library.encryption.symmetry.DES;
-import site.wuao.library.encryption.symmetry.DESede;
-import site.wuao.library.encryption.asymmetry.RSA;
 import site.wuao.library.digest.MD5Util;
 import site.wuao.library.digest.SHA1Util;
 import site.wuao.library.encode.Base64Util;
 import site.wuao.library.encode.HexUtil;
+import site.wuao.library.encryption.asymmetry.RSA;
+import site.wuao.library.encryption.asymmetry.RSAKey;
+import site.wuao.library.encryption.symmetry.AES;
+import site.wuao.library.encryption.symmetry.DES;
+import site.wuao.library.encryption.symmetry.DESede;
 import site.wuao.simplecipher.R;
 
 /**
@@ -32,7 +32,7 @@ import site.wuao.simplecipher.R;
  * @github -
  * @note -
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
     private static final String TAG = "MainActivity";
 
     @Override
