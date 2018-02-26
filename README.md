@@ -25,6 +25,13 @@ dependencies {
 	</repository>
 </repositories>
 ```
+```xml
+<dependency>
+	<groupId>com.github.CoderWuao</groupId>
+	<artifactId>cipher</artifactId>
+	<version>x.x.x</version>
+</dependency>
+```
 
 
 # Usage
