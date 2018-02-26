@@ -4,7 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
 import site.wuao.library.encode.HexUtil;
-import site.wuao.opsrc.apache.commons.codec.CharEncoding;
+import site.wuao.opsrc.org.apache.commons.codec.CharEncoding;
 
 /**
  * 消息摘要

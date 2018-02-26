@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package site.wuao.opsrc.apache.commons.codec;
+package site.wuao.opsrc.org.apache.commons.codec;
 
 /**
  * Character encoding names required of every implementation of the Java platform.

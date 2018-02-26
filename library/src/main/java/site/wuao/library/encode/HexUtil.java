@@ -2,7 +2,7 @@ package site.wuao.library.encode;
 
 import java.io.UnsupportedEncodingException;
 
-import site.wuao.opsrc.apache.commons.codec.CharEncoding;
+import site.wuao.opsrc.org.apache.commons.codec.CharEncoding;
 
 
 /**

@@ -1,9 +1,9 @@
-package site.wuao.simplecipher.ui.activity;
+package site.wuao.cipher.ui.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 
-import site.wuao.simplecipher.R;
+import site.wuao.cipher.R;
 
 /**
  * 首页

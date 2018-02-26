@@ -1,4 +1,4 @@
-package site.wuao.simplecipher;
+package site.wuao.cipher;
 
 import org.junit.Test;
 

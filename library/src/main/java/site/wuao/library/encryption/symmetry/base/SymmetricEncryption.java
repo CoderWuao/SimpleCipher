@@ -10,7 +10,7 @@ import javax.crypto.KeyGenerator;
 import site.wuao.library.encode.Base64Util;
 import site.wuao.library.encode.HexUtil;
 import site.wuao.library.encryption.base.Encryption;
-import site.wuao.opsrc.apache.commons.codec.CharEncoding;
+import site.wuao.opsrc.org.apache.commons.codec.CharEncoding;
 
 /**
  * 对称加密

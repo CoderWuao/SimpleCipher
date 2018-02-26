@@ -15,7 +15,7 @@ import javax.crypto.Cipher;
 import site.wuao.library.encode.Base64Util;
 import site.wuao.library.encode.HexUtil;
 import site.wuao.library.encryption.asymmetry.base.AsymmetricEncryption;
-import site.wuao.opsrc.apache.commons.codec.CharEncoding;
+import site.wuao.opsrc.org.apache.commons.codec.CharEncoding;
 
 /**
  * RSA
