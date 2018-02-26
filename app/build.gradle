@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     defaultConfig {
         applicationId "site.wuao.simplecipher"
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
     }
@@ -19,12 +19,9 @@ android {
 
 dependencies {
 //    implementation 'com.android.support:appcompat-v7:26.1.0'
-//    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
 
 
-    compile 'com.github.CoderWuao:cipher:0.3.0'
-//    compile project(path: ':library')
-
-
-
+//    compile 'com.github.CoderWuao:cipher:0.3.0'
+    compile project(path: ':library')
 }

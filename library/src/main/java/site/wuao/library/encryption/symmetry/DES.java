@@ -5,6 +5,8 @@ import java.security.Key;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 
+import site.wuao.library.encryption.symmetry.base.SymmetricEncryption;
+
 
 /**
  * DES

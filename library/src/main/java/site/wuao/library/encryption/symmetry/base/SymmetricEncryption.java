@@ -1,4 +1,4 @@
-package site.wuao.library.encryption.symmetry;
+package site.wuao.library.encryption.symmetry.base;
 
 import java.io.UnsupportedEncodingException;
 import java.security.Key;
@@ -9,7 +9,7 @@ import javax.crypto.KeyGenerator;
 
 import site.wuao.library.encode.Base64Util;
 import site.wuao.library.encode.HexUtil;
-import site.wuao.library.encryption.Encryption;
+import site.wuao.library.encryption.base.Encryption;
 import site.wuao.opsrc.apache.commons.codec.CharEncoding;
 
 /**

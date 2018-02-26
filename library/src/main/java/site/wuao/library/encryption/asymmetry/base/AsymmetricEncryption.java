@@ -1,6 +1,6 @@
-package site.wuao.library.encryption.asymmetry;
+package site.wuao.library.encryption.asymmetry.base;
 
-import site.wuao.library.encryption.Encryption;
+import site.wuao.library.encryption.base.Encryption;
 
 /**
  * 非对称加密

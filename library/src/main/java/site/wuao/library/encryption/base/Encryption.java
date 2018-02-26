@@ -1,4 +1,4 @@
-package site.wuao.library.encryption;
+package site.wuao.library.encryption.base;
 
 import java.security.InvalidParameterException;
 
