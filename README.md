@@ -3,7 +3,7 @@
 
 # Download
 * gradle
-```java
+```groovy
 allprojects {
 	repositories {
 		...
@@ -11,13 +11,13 @@ allprojects {
 	}
 }
 ```
-```java
+```groovy
 dependencies {
     compile 'com.github.CoderWuao:cipher:x.x.x'
 }
 ```
 * maven
-```java
+```xml
 <repositories>
 	<repository>
 		<id>jitpack.io</id>
@@ -34,7 +34,7 @@ String digest = SHA1.digestHex(data);
 ```
 
 # License
-```java
+```
 Copyright 2013 Wuao
 
 Licensed under the Apache License, Version 2.0 (the "License");
