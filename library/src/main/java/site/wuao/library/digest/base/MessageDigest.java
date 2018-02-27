@@ -3,7 +3,7 @@ package site.wuao.library.digest.base;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
-import site.wuao.library.encode.HexUtil;
+import site.wuao.library.encode.Hex;
 import site.wuao.opsrc.org.apache.commons.codec.CharEncoding;
 
 /**
@@ -22,8 +22,6 @@ import site.wuao.opsrc.org.apache.commons.codec.CharEncoding;
 public class MessageDigest {
     /** 消息摘要算法 */
     protected static final String MESSAGE_DIGEST_ALGORITHM_MD2 = "MD2";
-    /** 消息摘要算法 */
-    protected static final String MESSAGE_DIGEST_ALGORITHM_MD4 = "MD4";
     /** 消息摘要算法 */
     protected static final String MESSAGE_DIGEST_ALGORITHM_MD5 = "MD5";
     /** 消息摘要算法 */
@@ -82,7 +80,7 @@ public class MessageDigest {
      */
     protected static String digestHex(byte[] data, String keyAlgorithm) {
         byte[] digest = digest(data, keyAlgorithm);
-        return HexUtil.encodeString(digest);
+        return Hex.encodeString(digest);
     }
 
     /**
@@ -95,7 +93,7 @@ public class MessageDigest {
     protected static String digestHex(String data, String keyAlgorithm) {
         try {
             byte[] digest = digest(data.getBytes(CharEncoding.UTF_8), keyAlgorithm);
-            return HexUtil.encodeString(digest);
+            return Hex.encodeString(digest);
         } catch (UnsupportedEncodingException e) {
             // 不做处理
         }

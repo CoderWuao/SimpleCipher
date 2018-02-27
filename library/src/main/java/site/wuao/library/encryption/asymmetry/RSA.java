@@ -12,8 +12,8 @@ import java.security.spec.X509EncodedKeySpec;
 
 import javax.crypto.Cipher;
 
-import site.wuao.library.encode.Base64Util;
-import site.wuao.library.encode.HexUtil;
+import site.wuao.library.encode.Base64;
+import site.wuao.library.encode.Hex;
 import site.wuao.library.encryption.asymmetry.base.AsymmetricEncryption;
 import site.wuao.opsrc.org.apache.commons.codec.CharEncoding;
 
@@ -87,10 +87,10 @@ public class RSA extends AsymmetricEncryption {
             RSAKey key = new RSAKey();
             key.privateKey = privateKey;
             key.publicKey = publicKey;
-            key.privateKeyBase64 = Base64Util.encodeString(privateKey);
-            key.publicKeyBase64 = Base64Util.encodeString(publicKey);
-            key.privateKeyHex = HexUtil.encodeString(privateKey);
-            key.publicKeyHex = HexUtil.encodeString(publicKey);
+            key.privateKeyBase64 = Base64.encodeString(privateKey);
+            key.publicKeyBase64 = Base64.encodeString(publicKey);
+            key.privateKeyHex = Hex.encodeString(privateKey);
+            key.publicKeyHex = Hex.encodeString(publicKey);
             return key;
         } catch (NoSuchAlgorithmException e) {
             exception = e;
@@ -135,8 +135,8 @@ public class RSA extends AsymmetricEncryption {
      */
     public String encryptByPublicKeyBase64(String data, String base64Key) {
         try {
-            byte[] encrypt = encryptByPublicKey(data.getBytes(CharEncoding.UTF_8), Base64Util.decode(base64Key));
-            return Base64Util.encodeString(encrypt);
+            byte[] encrypt = encryptByPublicKey(data.getBytes(CharEncoding.UTF_8), Base64.decode(base64Key));
+            return Base64.encodeString(encrypt);
         } catch (UnsupportedEncodingException e) {
             // 不做处理
         }
@@ -152,8 +152,8 @@ public class RSA extends AsymmetricEncryption {
      */
     public String encryptByPublicKeyHex(String data, String hexKey) {
         try {
-            byte[] encrypt = encryptByPublicKey(data.getBytes(CharEncoding.UTF_8), HexUtil.decode(hexKey));
-            return HexUtil.encodeString(encrypt);
+            byte[] encrypt = encryptByPublicKey(data.getBytes(CharEncoding.UTF_8), Hex.decode(hexKey));
+            return Hex.encodeString(encrypt);
         } catch (UnsupportedEncodingException e) {
             // 不做处理
         }
@@ -194,8 +194,8 @@ public class RSA extends AsymmetricEncryption {
      */
     public String encryptByPrivateKeyBase64(String data, String base64Key) {
         try {
-            byte[] encrypt = encryptByPrivateKey(data.getBytes(CharEncoding.UTF_8), Base64Util.decode(base64Key));
-            return Base64Util.encodeString(encrypt);
+            byte[] encrypt = encryptByPrivateKey(data.getBytes(CharEncoding.UTF_8), Base64.decode(base64Key));
+            return Base64.encodeString(encrypt);
         } catch (UnsupportedEncodingException e) {
             // 不做处理
         }
@@ -211,8 +211,8 @@ public class RSA extends AsymmetricEncryption {
      */
     public String encryptByPrivateKeyHex(String data, String hexKey) {
         try {
-            byte[] encrypt = encryptByPrivateKey(data.getBytes(CharEncoding.UTF_8), HexUtil.decode(hexKey));
-            return HexUtil.encodeString(encrypt);
+            byte[] encrypt = encryptByPrivateKey(data.getBytes(CharEncoding.UTF_8), Hex.decode(hexKey));
+            return Hex.encodeString(encrypt);
         } catch (UnsupportedEncodingException e) {
             // 不做处理
         }
@@ -255,7 +255,7 @@ public class RSA extends AsymmetricEncryption {
      */
     public  String decryptByPublicKeyBase64(String base64Data, String base64Key) {
         try {
-            byte[] decrypt = decryptByPublicKey(Base64Util.decode(base64Data), Base64Util.decode(base64Key));
+            byte[] decrypt = decryptByPublicKey(Base64.decode(base64Data), Base64.decode(base64Key));
             return new String(decrypt, CharEncoding.UTF_8);
         } catch (UnsupportedEncodingException e) {
             // 不做处理
@@ -272,7 +272,7 @@ public class RSA extends AsymmetricEncryption {
      */
     public  String decryptByPublicKeyHex(String hexData, String hexKey) {
         try {
-            byte[] decrypt = decryptByPublicKey(HexUtil.decode(hexData), HexUtil.decode(hexKey));
+            byte[] decrypt = decryptByPublicKey(Hex.decode(hexData), Hex.decode(hexKey));
             return new String(decrypt, CharEncoding.UTF_8);
         } catch (UnsupportedEncodingException e) {
             // 不做处理
@@ -314,7 +314,7 @@ public class RSA extends AsymmetricEncryption {
      */
     public  String decryptByPrivateKeyBase64(String base64Data, String base64Key) {
         try {
-            byte[] decrypt = decryptByPrivateKey(Base64Util.decode(base64Data), Base64Util.decode(base64Key));
+            byte[] decrypt = decryptByPrivateKey(Base64.decode(base64Data), Base64.decode(base64Key));
             return new String(decrypt, CharEncoding.UTF_8);
         } catch (UnsupportedEncodingException e) {
             // 不做处理
@@ -331,7 +331,7 @@ public class RSA extends AsymmetricEncryption {
      */
     public  String decryptByPrivateKeyHex(String hexData, String hexKey) {
         try {
-            byte[] decrypt = decryptByPrivateKey(HexUtil.decode(hexData), HexUtil.decode(hexKey));
+            byte[] decrypt = decryptByPrivateKey(Hex.decode(hexData), Hex.decode(hexKey));
             return new String(decrypt, CharEncoding.UTF_8);
         } catch (UnsupportedEncodingException e) {
             // 不做处理

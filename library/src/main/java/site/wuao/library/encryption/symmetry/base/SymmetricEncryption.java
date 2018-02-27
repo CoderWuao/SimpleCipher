@@ -7,8 +7,8 @@ import java.security.NoSuchAlgorithmException;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 
-import site.wuao.library.encode.Base64Util;
-import site.wuao.library.encode.HexUtil;
+import site.wuao.library.encode.Base64;
+import site.wuao.library.encode.Hex;
 import site.wuao.library.encryption.base.Encryption;
 import site.wuao.opsrc.org.apache.commons.codec.CharEncoding;
 
@@ -57,7 +57,7 @@ public abstract class SymmetricEncryption extends Encryption {
      * @return 密钥
      */
     public String createKeyBase64() {
-        return Base64Util.encodeString(createKey());
+        return Base64.encodeString(createKey());
     }
 
     /**
@@ -66,7 +66,7 @@ public abstract class SymmetricEncryption extends Encryption {
      * @return 密钥
      */
     public String createKeyHex() {
-        return HexUtil.encodeString(createKey());
+        return Hex.encodeString(createKey());
     }
 
     /**
@@ -100,8 +100,8 @@ public abstract class SymmetricEncryption extends Encryption {
      */
     public String encryptBase64(String data, String base64Key) {
         try {
-            byte[] encrypt = encrypt(data.getBytes(CharEncoding.UTF_8), Base64Util.decode(base64Key));
-            return Base64Util.encodeString(encrypt);
+            byte[] encrypt = encrypt(data.getBytes(CharEncoding.UTF_8), Base64.decode(base64Key));
+            return Base64.encodeString(encrypt);
         } catch (UnsupportedEncodingException e) {
             // 不做处理
         }
@@ -117,8 +117,8 @@ public abstract class SymmetricEncryption extends Encryption {
      */
     public String encryptHex(String data, String hexKey) {
         try {
-            byte[] encrypt = encrypt(data.getBytes(CharEncoding.UTF_8), HexUtil.decode(hexKey));
-            return HexUtil.encodeString(encrypt);
+            byte[] encrypt = encrypt(data.getBytes(CharEncoding.UTF_8), Hex.decode(hexKey));
+            return Hex.encodeString(encrypt);
         } catch (UnsupportedEncodingException e) {
             // 不做处理
         }
@@ -156,7 +156,7 @@ public abstract class SymmetricEncryption extends Encryption {
      */
     public  String decryptBase64(String base64Data, String base64Key) {
         try {
-            byte[] decrypt = decrypt(Base64Util.decode(base64Data), Base64Util.decode(base64Key));
+            byte[] decrypt = decrypt(Base64.decode(base64Data), Base64.decode(base64Key));
             return new String(decrypt, CharEncoding.UTF_8);
         } catch (UnsupportedEncodingException e) {
             // 不做处理
@@ -173,7 +173,7 @@ public abstract class SymmetricEncryption extends Encryption {
      */
     public  String decryptHex(String hexData, String hexKey) {
         try {
-            byte[] decrypt = decrypt(HexUtil.decode(hexData), HexUtil.decode(hexKey));
+            byte[] decrypt = decrypt(Hex.decode(hexData), Hex.decode(hexKey));
             return new String(decrypt, CharEncoding.UTF_8);
         } catch (UnsupportedEncodingException e) {
             // 不做处理

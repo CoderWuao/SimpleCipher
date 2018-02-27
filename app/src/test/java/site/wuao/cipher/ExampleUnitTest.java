@@ -9,8 +9,8 @@ import site.wuao.library.digest.SHA224;
 import site.wuao.library.digest.SHA256;
 import site.wuao.library.digest.SHA384;
 import site.wuao.library.digest.SHA512;
-import site.wuao.library.encode.Base64Util;
-import site.wuao.library.encode.HexUtil;
+import site.wuao.library.encode.Base64;
+import site.wuao.library.encode.Hex;
 import site.wuao.library.encryption.asymmetry.RSA;
 import site.wuao.library.encryption.asymmetry.RSAKey;
 import site.wuao.library.encryption.symmetry.AES;
@@ -106,7 +106,7 @@ public class ExampleUnitTest {
 
         String data = "AES";
         String key = "wuaowuaowuaowuao";
-        String keyBase64 = Base64Util.encodeString(key);
+        String keyBase64 = Base64.encodeString(key);
 
         String encrypt = instance.encryptBase64(data, keyBase64);
         String decrypt = instance.decryptBase64(encrypt, keyBase64);
@@ -173,7 +173,7 @@ public class ExampleUnitTest {
 
         String data = "DESede";
         String key = "wuaowuaowuaowuaowuaowuao";
-        String keyBase64 = Base64Util.encodeString(key);
+        String keyBase64 = Base64.encodeString(key);
 
         String encrypt = instance.encryptBase64(data, keyBase64);
         String decrypt = instance.decryptBase64(encrypt, keyBase64);
@@ -240,7 +240,7 @@ public class ExampleUnitTest {
 
         String data = "DES";
         String key = "wuaowuao";
-        String keyBase64 = Base64Util.encodeString(key);
+        String keyBase64 = Base64.encodeString(key);
 
         String encrypt = instance.encryptBase64(data, keyBase64);
         String decrypt = instance.decryptBase64(encrypt, keyBase64);
@@ -304,8 +304,8 @@ public class ExampleUnitTest {
     public void hex() {
         String data = "wuao";
 
-        String encode = HexUtil.encodeString(data);
-        String decode = HexUtil.decodeString(encode);
+        String encode = Hex.encodeString(data);
+        String decode = Hex.decodeString(encode);
 
         System.out.println("原文：" + data);
         System.out.println("编码：" + encode);
@@ -320,8 +320,8 @@ public class ExampleUnitTest {
     public void base64() {
         String data = "wuao";
 
-        String encode = Base64Util.encodeString(data);
-        String decode = Base64Util.decodeString(encode);
+        String encode = Base64.encodeString(data);
+        String decode = Base64.decodeString(encode);
 
         System.out.println("原文：" + data);
         System.out.println("编码：" + encode);
