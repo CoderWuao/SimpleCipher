@@ -46,22 +46,25 @@ public class ExampleUnitTest {
         String decryptByPublicKey = instance.decryptByPublicKeyHex(encryptByPrivateKey, key.publicKeyHex);
 
         System.out.println("原文: " + data);
-        System.out.println("公钥: " + key.publicKeyBase64);
-        System.out.println("私钥: " + key.privateKeyBase64);
+        System.out.println("公钥: " + key.publicKeyHex);
+        System.out.println("私钥: " + key.privateKeyHex);
         System.out.println("公钥加密: " + encryptByPublicKey);
         System.out.println("私钥解密: " + decryptByPrivateKey);
         System.out.println("私钥加密: " + encryptByPrivateKey);
         System.out.println("公钥解密: " + decryptByPublicKey);
 
         // 原文: wuao
-        // 公钥: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKzpvPLQDCrHhrTUKfqeMMrmFR+VNFStfve6wdCZKRyyzkvPefKSqkBCiP7+IGPAQRSGHkbow7AM8UFpqqK0p5kCAwEAAQ==
-        // 私钥: MIIBVAIBADANBgkqhkiG9w0BAQEFAASCAT4wggE6AgEAAkEArOm88tAMKseGtNQp+p4wyuYVH5U0VK1+97rB0JkpHLLOS8958pKqQEKI/v4gY8BBFIYeRujDsAzxQWmqorS
-        // nmQIDAQABAkBFIlM8lfg3Zn0ycZ2zKWqCxUluzj4VGSUpsU7qs0IfyalY44zZlEe0MM0F2TfaEYWJ5ZAgf1IVoRMehsdEKgWNAiEA4P7F723faUikVIroVRJE9zCu9FxC4lE03hpF
-        // o4dx7/MCIQDEvaVVg/nZHmFCInwbdS/UeLj7/2KR7B/nx08da+N5QwIgF/5zg1YXRjYN+Eob/r6FBkt1zO9t3o7EcY8hsA/IscsCIGMpUxPvGRceANdcmkEcp6bn0hTxe7Ug1lP0W
-        // SPzJQwRAiEAt54akVnOuZXqd45RjWjfCEi7ERZ4W8toKgcEycPekw0=
-        // 公钥加密: 375dff8c263abd81bee022842266ecfc2db997c13a1415289d0d8567720a66e2c7ae6db2969bac57a06369bf35a6287cff7bacb916bef5999654623884e8781e
+        // 公钥: 305c300d06092a864886f70d0101010500034b003048024100b7de5962c00e03b539255c36bfdd36e0533a130f8335393f5ac11b5e5e1d449a3ed328dcdd1c50698
+        // d909b5dc03513a2ae39a73c66cb5ca10ed3fb27acd3189f0203010001
+        // 私钥: 30820154020100300d06092a864886f70d01010105000482013e3082013a020100024100b7de5962c00e03b539255c36bfdd36e0533a130f8335393f5ac11b5e5e1
+        // d449a3ed328dcdd1c50698d909b5dc03513a2ae39a73c66cb5ca10ed3fb27acd3189f0203010001024100a7cdca20008d09bf43a720106b6c15600734d21e6f2d8cd0901f
+        // fabd56013a1047b15943ee1989bef5c40c4442ab5c89ce6b8cacdcd39428682662f835a20159022100f85f0915f81f047310258241adb3850d8e1beb0144fc8fc2a7a22a2
+        // f34c42393022100bd841f9e0c269ae87748ecdc332c7e0d472995130cf3fa4b46a40299c389b64502205c7d5f6fcbef1904142e339c6ba7df5355e935914a7456c0a11635
+        // 6950d7fd7b02205388a4430eca0967c40451daf177800c2c3cc8e7bfc2dea5457acf66a548d31d02204742d940b418718790499ef94d6758c3e7fa365f58d786481a0737c
+        // 4ee2e07d5
+        // 公钥加密: 19b0bcae360ee091505bd34822176a424a4e3fa13a0f2c97b66cc7247654d4b7d030caa1c26b9f3979a5c0f9e606aa597c462bbacf9eb967d4d5842f3fae1217
         // 私钥解密: wuao
-        // 私钥加密: 1fc44dd82474a6b680ef86f33421e5a03438941e054688035322a127ccbc4dc3858a7bd557b9958dbdc5227c693786920d2c2fa5df9af62a29b867ef7cb9e52f
+        // 私钥加密: 284b71a6ba5cf806dcdf75165e47164e1b8f01faf7d757a397c141e8b56dfa3e6744e906e15033911a8ee68f3b427be556074473965e339c6c54dcee9dcc294f
         // 公钥解密: wuao
     }
 
