@@ -35,9 +35,16 @@ dependencies {
 
 
 # Usage
+### MessageDigest
 ```java
-String digest = MD5.digestHex(data);
-String digest = SHA1.digestHex(data);
+String data = "wuao";
+String digest = MD2.digestHex(data);
+
+System.out.println("原文: " + data);
+System.out.println("摘要: " + digest);
+
+// 原文: wuao
+// 摘要: ab737d2f07588dd5242aaa4b135ed780
 ```
 
 # License
