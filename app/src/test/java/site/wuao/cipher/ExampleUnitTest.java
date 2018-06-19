@@ -43,12 +43,12 @@ public class ExampleUnitTest {
         // encrypt by public key & decrypt by private key
         String encryptByPublicKey = RSA.getInstance().encryptByPublicKeyHex("wuao", key.publicKeyHex);
         String decryptByPrivateKey = RSA.getInstance().decryptByPrivateKeyHex(encryptByPublicKey, key.privateKeyHex);
-        Assert.assertEquals(decryptByPrivateKey,"wuao");
+        Assert.assertEquals(decryptByPrivateKey, "wuao");
 
         // encrypt by private key & decrypt by public key
         String encryptByPrivateKey = RSA.getInstance().encryptByPrivateKeyHex("wuao", key.privateKeyHex);
         String decryptByPublicKey = RSA.getInstance().decryptByPublicKeyHex(encryptByPrivateKey, key.publicKeyHex);
-        Assert.assertEquals(decryptByPublicKey,"wuao");
+        Assert.assertEquals(decryptByPublicKey, "wuao");
     }
 
     @Test
@@ -62,12 +62,12 @@ public class ExampleUnitTest {
         // encrypt by public key & decrypt by private key
         String encryptByPublicKey = RSA.getInstance().encryptByPublicKeyBase64("wuao", key.publicKeyBase64);
         String decryptByPrivateKey = RSA.getInstance().decryptByPrivateKeyBase64(encryptByPublicKey, key.privateKeyBase64);
-        Assert.assertEquals(decryptByPrivateKey,"wuao");
+        Assert.assertEquals(decryptByPrivateKey, "wuao");
 
         // encrypt by private key & decrypt by public key
         String encryptByPrivateKey = RSA.getInstance().encryptByPrivateKeyBase64("wuao", key.privateKeyBase64);
         String decryptByPublicKey = RSA.getInstance().decryptByPublicKeyBase64(encryptByPrivateKey, key.publicKeyBase64);
-        Assert.assertEquals(decryptByPublicKey,"wuao");
+        Assert.assertEquals(decryptByPublicKey, "wuao");
     }
 
     @Test
@@ -79,9 +79,9 @@ public class ExampleUnitTest {
         String keyBase64 = Base64.encodeString("1234567890123456");
 
         // encrypt & decrypt
-        String encrypt = AES.getInstance().encryptBase64("AES", keyBase64);
+        String encrypt = AES.getInstance().encryptBase64("wuao", keyBase64);
         String decrypt = AES.getInstance().decryptBase64(encrypt, keyBase64);
-        Assert.assertEquals(decrypt,"AES");
+        Assert.assertEquals(decrypt, "wuao");
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ExampleUnitTest {
         // encrypt & decrypt
         String encrypt = AES.getInstance().encryptHex("wuao", keyHex);
         String decrypt = AES.getInstance().decryptHex(encrypt, keyHex);
-        Assert.assertEquals(decrypt,"wuao");
+        Assert.assertEquals(decrypt, "wuao");
     }
 
     @Test
@@ -109,7 +109,7 @@ public class ExampleUnitTest {
         // encrypt & decrypt
         String encrypt = AES.getInstance().encryptBase64("wuao", keyBase64);
         String decrypt = AES.getInstance().decryptBase64(encrypt, keyBase64);
-        Assert.assertEquals(decrypt,"wuao");
+        Assert.assertEquals(decrypt, "wuao");
     }
 
     @Test
@@ -123,7 +123,7 @@ public class ExampleUnitTest {
         // encrypt & decrypt
         String encrypt = DESede.getInstance().encryptBase64("wuao", keyBase64);
         String decrypt = DESede.getInstance().decryptBase64(encrypt, keyBase64);
-        Assert.assertEquals(decrypt,"wuao");
+        Assert.assertEquals(decrypt, "wuao");
     }
 
     @Test
@@ -137,7 +137,7 @@ public class ExampleUnitTest {
         // encrypt & decrypt
         String encrypt = DESede.getInstance().encryptHex("wuao", keyHex);
         String decrypt = DESede.getInstance().decryptHex(encrypt, keyHex);
-        Assert.assertEquals(decrypt,"wuao");
+        Assert.assertEquals(decrypt, "wuao");
     }
 
     @Test
@@ -151,7 +151,7 @@ public class ExampleUnitTest {
         // encrypt & decrypt
         String encrypt = DESede.getInstance().encryptBase64("wuao", keyBase64);
         String decrypt = DESede.getInstance().decryptBase64(encrypt, keyBase64);
-        Assert.assertEquals(decrypt,"wuao");
+        Assert.assertEquals(decrypt, "wuao");
     }
 
     @Test
@@ -165,7 +165,7 @@ public class ExampleUnitTest {
         // encrypt & decrypt
         String encrypt = DES.getInstance().encryptBase64("wuao", keyBase64);
         String decrypt = DES.getInstance().decryptBase64(encrypt, keyBase64);
-        Assert.assertEquals(decrypt,"wuao");
+        Assert.assertEquals(decrypt, "wuao");
     }
 
     @Test
@@ -179,7 +179,7 @@ public class ExampleUnitTest {
         // encrypt & decrypt
         String encrypt = DES.getInstance().encryptHex("wuao", keyHex);
         String decrypt = DES.getInstance().decryptHex(encrypt, keyHex);
-        Assert.assertEquals(decrypt,"wuao");
+        Assert.assertEquals(decrypt, "wuao");
     }
 
     @Test
@@ -193,7 +193,7 @@ public class ExampleUnitTest {
         // encrypt & decrypt
         String encrypt = DES.getInstance().encryptBase64("wuao", keyBase64);
         String decrypt = DES.getInstance().decryptBase64(encrypt, keyBase64);
-        Assert.assertEquals(decrypt,"wuao");
+        Assert.assertEquals(decrypt, "wuao");
     }
 
     @Test
@@ -201,19 +201,19 @@ public class ExampleUnitTest {
         // base64
         String encodeBase64 = Base64.encodeString("wuao");
         String decodeBase64 = Base64.decodeString(encodeBase64);
-        Assert.assertEquals(encodeBase64,"d3Vhbw==");
-        Assert.assertEquals(decodeBase64,"wuao");
+        Assert.assertEquals(encodeBase64, "d3Vhbw==");
+        Assert.assertEquals(decodeBase64, "wuao");
 
         // hex
         String encodeHex = Hex.encodeString("wuao");
         String decodeHex = Hex.decodeString(encodeHex);
-        Assert.assertEquals(encodeHex,"7775616f");
-        Assert.assertEquals(decodeHex,"wuao");
+        Assert.assertEquals(encodeHex, "7775616f");
+        Assert.assertEquals(decodeHex, "wuao");
     }
 
     @Test
     public void messageDigest() {
-        Assert.assertEquals(MD2.digestHex("wuao"),"ab737d2f07588dd5242aaa4b135ed780");
+        Assert.assertEquals(MD2.digestHex("wuao"), "ab737d2f07588dd5242aaa4b135ed780");
         Assert.assertEquals(MD5.digestHex("wuao"), "08d40236d48c5377f95193190ace250f");
         Assert.assertEquals(SHA1.digestHex("wuao"), "9ad403bfd80c6af2cff4d1a7b1635cf5bec9a4fe");
         Assert.assertEquals(SHA224.digestHex("wuao"), "abce923277c0af0a950f2a7325f59294c0139695299f6004cbcc5a5a");
