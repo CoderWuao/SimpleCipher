@@ -337,6 +337,21 @@ public class ExampleUnitTest {
     }
 
     @Test
+    public void encode() {
+        // base64
+        String encodeBase64 = Base64.encodeString("wuao");
+        String decodeBase64 = Base64.decodeString(encodeBase64);
+        Assert.assertEquals(encodeBase64,"d3Vhbw==");
+        Assert.assertEquals(decodeBase64,"wuao");
+
+        // hex
+        String encodeHex = Hex.encodeString("wuao");
+        String decodeHex = Hex.decodeString(encodeHex);
+        Assert.assertEquals(encodeHex,"7775616f");
+        Assert.assertEquals(decodeHex,"wuao");
+    }
+
+    @Test
     public void messageDigest() {
         Assert.assertEquals(MD2.digestHex("wuao"),"ab737d2f07588dd5242aaa4b135ed780");
         Assert.assertEquals(MD5.digestHex("wuao"), "08d40236d48c5377f95193190ace250f");
