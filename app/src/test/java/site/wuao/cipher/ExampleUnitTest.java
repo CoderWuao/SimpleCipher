@@ -1,5 +1,6 @@
 package site.wuao.cipher;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import site.wuao.library.digest.MD2;
@@ -336,88 +337,20 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void sha512() {
-        String data = "wuao";
-        String digest = SHA512.digestHex(data);
-
-        System.out.println("原文: " + data);
-        System.out.println("摘要: " + digest);
-
-        // 原文: wuao
-        // 摘要: f12f52e45028e3a190ac6ec7653a8a6a9403abb0f36d313c824c3200e9825c846a334139c8db9f2cec6eec87c4644224c6eda9d895b18fe3bd7a7964869e0c31
-    }
-
-
-    @Test
-    public void sha384() {
-        String data = "wuao";
-        String digest = SHA384.digestHex(data);
-
-        System.out.println("原文: " + data);
-        System.out.println("摘要: " + digest);
-
-        // 原文: wuao
-        // 摘要: 84fd25dca4cadc5b1538b6dea1104bc9e6d8906e957060a1cdb04da5b4b7054c5704e1b176babe5d313966fc781c876b
-    }
-
-
-    @Test
-    public void sha256() {
-        String data = "wuao";
-        String digest = SHA256.digestHex(data);
-
-        System.out.println("原文: " + data);
-        System.out.println("摘要: " + digest);
-
-        // 原文: wuao
-        // 摘要: 15d3c1c0b6707fc8ae818ab8f7ffbb0d8f86425c6ab1352da3af6d15219988a6
-    }
-
-    @Test
-    public void sha224() {
-        String data = "wuao";
-        String digest = SHA224.digestHex(data);
-
-        System.out.println("原文: " + data);
-        System.out.println("摘要: " + digest);
-
-        // 原文: wuao
-        // 摘要: abce923277c0af0a950f2a7325f59294c0139695299f6004cbcc5a5a
-    }
-
-    @Test
-    public void sha1() {
-        String data = "wuao";
-        String digest = SHA1.digestHex(data);
-
-        System.out.println("原文: " + data);
-        System.out.println("摘要: " + digest);
-
-        // 原文: wuao
-        // 摘要: 9ad403bfd80c6af2cff4d1a7b1635cf5bec9a4fe
-    }
-
-    @Test
-    public void md5() {
-        String data = "wuao";
-        String digest = MD5.digestHex(data);
-
-        System.out.println("原文: " + data);
-        System.out.println("摘要: " + digest);
-
-        // 原文: wuao
-        // 摘要: 08d40236d48c5377f95193190ace250f
-    }
-
-    @Test
-    public void md2() {
-        String data = "wuao";
-        String digest = MD2.digestHex(data);
-
-        System.out.println("原文: " + data);
-        System.out.println("摘要: " + digest);
-
-        // 原文: wuao
-        // 摘要: ab737d2f07588dd5242aaa4b135ed780
+    public void messageDigest() {
+        // md2
+        Assert.assertEquals(MD2.digestHex("wuao"),"ab737d2f07588dd5242aaa4b135ed780");
+        // md5
+        Assert.assertEquals(MD5.digestHex("wuao"), "08d40236d48c5377f95193190ace250f");
+        // sha1
+        Assert.assertEquals(SHA1.digestHex("wuao"), "9ad403bfd80c6af2cff4d1a7b1635cf5bec9a4fe");
+        // sha224
+        Assert.assertEquals(SHA224.digestHex("wuao"), "abce923277c0af0a950f2a7325f59294c0139695299f6004cbcc5a5a");
+        // sha256
+        Assert.assertEquals(SHA256.digestHex("wuao"), "15d3c1c0b6707fc8ae818ab8f7ffbb0d8f86425c6ab1352da3af6d15219988a6");
+        // sha384
+        Assert.assertEquals(SHA384.digestHex("wuao"), "84fd25dca4cadc5b1538b6dea1104bc9e6d8906e957060a1cdb04da5b4b7054c5704e1b176babe5d313966fc781c876b");
+        // sha512
+        Assert.assertEquals(SHA512.digestHex("wuao"), "f12f52e45028e3a190ac6ec7653a8a6a9403abb0f36d313c824c3200e9825c846a334139c8db9f2cec6eec87c4644224c6eda9d895b18fe3bd7a7964869e0c31");
     }
 }
