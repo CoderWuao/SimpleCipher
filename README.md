@@ -51,7 +51,7 @@ Assert.assertEquals(SHA512.digestHex("wuao"), "f12f52e45028e3a190ac6ec7653a8a6a9
 ```java
 // base64
 String encodeBase64 = Base64.encodeString("wuao");
-String decodeBase64 = Base64.decodeString(encodeBase6
+String decodeBase64 = Base64.decodeString(encodeBase64);
 Assert.assertEquals(encodeBase64,"d3Vhbw==");
 Assert.assertEquals(decodeBase64,"wuao");
 
@@ -60,6 +60,46 @@ String encodeHex = Hex.encodeString("wuao");
 String decodeHex = Hex.decodeString(encodeHex);
 Assert.assertEquals(encodeHex,"7775616f");
 Assert.assertEquals(decodeHex,"wuao");
+```
+
+
+### DES
+* Base64 key
+```java
+// init
+DES.getInstance().init(DES.KEY_SIZE_56, DES.WORK_MODE_ECB, DES.PADDING_MODE_PKCS5Padding);
+
+// create base64 key
+String keyBase64 = DES.getInstance().createKeyBase64();
+
+// encrypt & decrypt
+String encrypt = DES.getInstance().encryptBase64("wuao", keyBase64);
+String decrypt = DES.getInstance().decryptBase64(encrypt, keyBase64);
+Assert.assertEquals(decrypt,"wuao");
+```
+* hex key
+```java
+// init
+DES.getInstance().init(DES.KEY_SIZE_56, DES.WORK_MODE_ECB, DES.PADDING_MODE_PKCS5Padding);
+
+// create hex key
+String keyHex = DES.getInstance().createKeyHex();
+
+// encrypt & decrypt
+String encrypt = DES.getInstance().encryptHex("wuao", keyHex);
+String decrypt = DES.getInstance().decryptHex(encrypt, keyHex);
+Assert.assertEquals(decrypt,"wuao");
+```
+* custom key
+```java
+// init
+DES.getInstance().init(DES.KEY_SIZE_56, DES.WORK_MODE_ECB, DES.PADDING_MODE_PKCS5Padding);
+// create custom key
+String keyBase64 = Base64.encodeString("12345678");
+// encrypt & decrypt
+String encrypt = DES.getInstance().encryptBase64("wuao", keyBase64);
+String decrypt = DES.getInstance().decryptBase64(encrypt, keyBase64);
+Assert.assertEquals(decrypt,"wuao");
 ```
 
 # License
