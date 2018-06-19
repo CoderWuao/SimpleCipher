@@ -94,13 +94,141 @@ Assert.assertEquals(decrypt,"wuao");
 ```java
 // init
 DES.getInstance().init(DES.KEY_SIZE_56, DES.WORK_MODE_ECB, DES.PADDING_MODE_PKCS5Padding);
+
 // create custom key
 String keyBase64 = Base64.encodeString("12345678");
+
 // encrypt & decrypt
 String encrypt = DES.getInstance().encryptBase64("wuao", keyBase64);
 String decrypt = DES.getInstance().decryptBase64(encrypt, keyBase64);
 Assert.assertEquals(decrypt,"wuao");
 ```
+
+
+### DESede
+* Base64 key
+```java
+// init
+DESede.getInstance().init(DESede.KEY_SIZE_168, DESede.WORK_MODE_ECB, DESede.PADDING_MODE_PKCS5Padding);
+
+// create base64 key
+String keyBase64 = DESede.getInstance().createKeyBase64();
+
+// encrypt & decrypt
+String encrypt = DESede.getInstance().encryptBase64("wuao", keyBase64);
+String decrypt = DESede.getInstance().decryptBase64(encrypt, keyBase64);
+Assert.assertEquals(decrypt,"wuao");
+```
+* hex key
+```java
+// init
+DESede.getInstance().init(DESede.KEY_SIZE_168, DESede.WORK_MODE_ECB, DESede.PADDING_MODE_PKCS5Padding);
+
+// create hex key
+String keyHex = DESede.getInstance().createKeyHex();
+
+// encrypt & decrypt
+String encrypt = DESede.getInstance().encryptHex("wuao", keyHex);
+String decrypt = DESede.getInstance().decryptHex(encrypt, keyHex);
+Assert.assertEquals(decrypt,"wuao");
+```
+* custom key
+```java
+// init
+DESede.getInstance().init(DESede.KEY_SIZE_168, DESede.WORK_MODE_ECB, DESede.PADDING_MODE_PKCS5Padding);
+
+// create custom key
+String keyBase64 = Base64.encodeString("123456789012345678901234");
+
+// encrypt & decrypt
+String encrypt = DESede.getInstance().encryptBase64("wuao", keyBase64);
+String decrypt = DESede.getInstance().decryptBase64(encrypt, keyBase64);
+Assert.assertEquals(decrypt,"wuao");
+```
+
+
+### AES
+* Base64 key
+```java
+// init
+AES.getInstance().init(AES.KEY_SIZE_128, AES.WORK_MODE_ECB, AES.PADDING_MODE_PKCS5Padding);
+
+// create base64 key
+String keyBase64 = AES.getInstance().createKeyBase64();
+
+// encrypt & decrypt
+String encrypt = AES.getInstance().encryptBase64("wuao", keyBase64);
+String decrypt = AES.getInstance().decryptBase64(encrypt, keyBase64);
+Assert.assertEquals(decrypt,"wuao");
+```
+* hex key
+```java
+// init
+AES.getInstance().init(AES.KEY_SIZE_128, AES.WORK_MODE_ECB, AES.PADDING_MODE_PKCS5Padding);
+
+// create hex key
+String keyHex = AES.getInstance().createKeyHex();
+
+// encrypt & decrypt
+String encrypt = AES.getInstance().encryptHex("wuao", keyHex);
+String decrypt = AES.getInstance().decryptHex(encrypt, keyHex);
+Assert.assertEquals(decrypt,"wuao");
+```
+* custom key
+```java
+// init
+AES.getInstance().init(AES.KEY_SIZE_128, AES.WORK_MODE_ECB, AES.PADDING_MODE_PKCS5Padding);
+
+// create custom key
+String keyBase64 = Base64.encodeString("1234567890123456");
+
+// encrypt & decrypt
+String encrypt = AES.getInstance().encryptBase64("AES", keyBase64);
+String decrypt = AES.getInstance().decryptBase64(encrypt, keyBase64);
+Assert.assertEquals(decrypt,"AES");
+```
+
+
+### RSA
+* Base64 key
+```java
+// init
+RSA.getInstance().init(RSA.KEY_SIZE_512, RSA.WORK_MODE_ECB, RSA.PADDING_MODE_PKCS1Padding);
+
+// create key
+RSAKey key = RSA.getInstance().createKey();
+
+// encrypt by public key & decrypt by private key
+String encryptByPublicKey = RSA.getInstance().encryptByPublicKeyBase64("wuao", key.publicKeyBase64);
+String decryptByPrivateKey = RSA.getInstance().decryptByPrivateKeyBase64(encryptByPublicKey, key.privateKeyBase64);
+Assert.assertEquals(decryptByPrivateKey,"wuao");
+
+// encrypt by private key & decrypt by public key
+String encryptByPrivateKey = RSA.getInstance().encryptByPrivateKeyBase64("wuao", key.privateKeyBase64);
+String decryptByPublicKey = RSA.getInstance().decryptByPublicKeyBase64(encryptByPrivateKey, key.publicKeyBase64);
+Assert.assertEquals(decryptByPublicKey,"wuao");
+```
+* hex key
+```java
+// init
+RSA.getInstance().init(RSA.KEY_SIZE_512, RSA.WORK_MODE_ECB, RSA.PADDING_MODE_PKCS1Padding);
+
+// create key
+RSAKey key = RSA.getInstance().createKey();
+
+// encrypt by public key & decrypt by private key
+String encryptByPublicKey = RSA.getInstance().encryptByPublicKeyHex("wuao", key.publicKeyHex);
+String decryptByPrivateKey = RSA.getInstance().decryptByPrivateKeyHex(encryptByPublicKey, key.privateKeyHex);
+Assert.assertEquals(decryptByPrivateKey,"wuao");
+
+// encrypt by private key & decrypt by public key
+String encryptByPrivateKey = RSA.getInstance().encryptByPrivateKeyHex("wuao", key.privateKeyHex);
+String decryptByPublicKey = RSA.getInstance().decryptByPublicKeyHex(encryptByPrivateKey, key.publicKeyHex);
+Assert.assertEquals(decryptByPublicKey,"wuao");
+```
+
+
+### 
 
 # License
 ```
