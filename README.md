@@ -13,7 +13,7 @@ allprojects {
 ```
 ```groovy
 dependencies {
-    compile 'com.github.CoderWuao:cipher:x.x.x'
+    compile 'com.github.dongwuamon:cipher:x.x.x'
 }
 ```
 * maven
