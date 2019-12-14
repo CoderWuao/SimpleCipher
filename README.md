@@ -27,7 +27,7 @@ dependencies {
 ```
 ```xml
 <dependency>
-	<groupId>com.github.CoderWuao</groupId>
+	<groupId>com.github.dongwuamon</groupId>
 	<artifactId>cipher</artifactId>
 	<version>x.x.x</version>
 </dependency>
